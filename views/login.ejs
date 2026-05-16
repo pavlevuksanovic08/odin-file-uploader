@@ -15,5 +15,10 @@
 
         <button type="submit">Login</button>
     </form>
+    <% if (locals.errors) {%>
+        <% errors.forEach(e => {%>
+            <p><%= e.message %></p>
+        <%})%>
+    <%}%>
 </body>
 </html>
