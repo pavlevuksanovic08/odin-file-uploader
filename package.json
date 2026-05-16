@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "prisma:generate": "prisma generate",
+    "prisma:generate": "npx prisma generate",
+    "dev": "npm run prisma:generate && nodemon app.js",
     "prisma:migrate": "prisma migrate dev --name init"
   },
   "keywords": [],
@@ -16,8 +16,11 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^6.19.3",
+    "@quixo3/prisma-session-store": "^3.1.19",
     "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "passport": "^0.7.0",
     "pg": "^8.20.0"
   },
