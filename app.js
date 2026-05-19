@@ -35,6 +35,20 @@ app.use(expressSession({
     }
 ));
 
+app.use(async (req, res, next) => {
+    if (req.session?.userId) {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: req.session.userId
+            }
+        })
+        res.locals.currentUser = user;
+    } else {
+        res.locals.currentUser = null;
+    }
+    next();
+})
+
 app.use('/', indexRouter)
 
 const PORT = process.env.PORT || 3000;
