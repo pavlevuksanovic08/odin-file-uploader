@@ -18,13 +18,22 @@ model Session {
   id        String   @id
   sid       String   @unique
   data      String   @db.Text
-  expiresAt   DateTime
+  expiresAt DateTime
 }
 
 model User {
-  id        String   @id @default(uuid())
-  username  String   @unique
-  password  String   @db.Text
-  first     String   
-  last      String
+  id       String   @id @default(uuid())
+  username String   @unique
+  password String   @db.Text
+  first    String
+  last     String
+  folders  Folder[]
+}
+
+model Folder {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  lastUpdate DateTime @updatedAt
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
 }
