@@ -7,11 +7,19 @@
 </head>
 <body>
     <h1>Welcome to the File Uploader</h1>
-    <p>You're not logged in.</p>
-    <p>Please log in to upload files.</p>
-    <button onclick="window.location.href = '/login';">Login</button>
-    <p>Don't have an account?</p>
-    <button onclick="window.location.href = '/signup';">Register</button>
-
+    <% if (locals.currentUser) { %>
+        <p>You're logged in.</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label>Upload file:</label>
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
+    <% } else { %>
+        <p>You're not logged in.</p>
+        <p>Please log in to upload files.</p>
+        <button onclick="window.location.href = '/login';">Login</button>
+        <p>Don't have an account?</p>
+        <button onclick="window.location.href = '/signup';">Register</button>
+    <% } %>
 </body>
 </html>
