@@ -17,7 +17,8 @@ export const postLogin = async (req, res) => {
 
     if (!user) return res.render("login", { errors: [new Error("Incorrect username or password.")]});
 
-    if (!bcrypt.compare(password, user.password)) return res.render("login", { errors: [new Error("Incorrect username or password.")]});
+    const compare = await bcrypt.compare(password, user.password)
+    if (!compare) return res.render("login", { errors: [new Error("Incorrect username or password.")]});
 
     req.session.userId = user.id;
     res.redirect("/")
@@ -82,6 +83,7 @@ export const postSignup = [
             })
 
             req.session.userId = user.id
+
             res.redirect("/")
 
         } catch (err) {
