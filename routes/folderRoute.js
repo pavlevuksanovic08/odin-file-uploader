@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as controller from "../controllers/folderController.js"
+import * as fileController from "../controllers/fileContoller.js"
 
 const router = Router();
 
@@ -8,5 +9,7 @@ router.post('/create', controller.postCreateFolder)
 router.get('/:id', controller.getFolderById);
 router.get('/:id/edit', controller.getFolderEdit);
 router.post('/:id/edit', controller.postFolderEdit);
-router.post('/:id/delete', controller.postFolderDelete)
+router.post('/:id/delete', controller.postFolderDelete);
+
+router.post('/:id/upload', fileController.postFileUpload)
 export default router
