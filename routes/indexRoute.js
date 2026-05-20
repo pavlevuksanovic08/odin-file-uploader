@@ -12,6 +12,4 @@ router.post('/signup', auth.postSignup);
 router.get('/login', auth.getLogin);
 router.post('/login', auth.postLogin);
 
-router.post('/upload', contoller.postFileUpload);
-
 export default router;
