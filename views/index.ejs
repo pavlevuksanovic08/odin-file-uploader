@@ -14,6 +14,17 @@
             <input type="file" name="file">
             <button type="submit">Upload</button>
         </form>
+        <button onclick="window.location.href='/folder/create'">Create new folder</button>
+        <% if (locals.folders) { %>
+            <div class="folders">
+                <% locals.folders.forEach(f => { %>
+                    <div onclick="window.location.href='/folder/<%= f.id %>'">
+                        <p><%= f.name %></p>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+
     <% } else { %>
         <p>You're not logged in.</p>
         <p>Please log in to upload files.</p>

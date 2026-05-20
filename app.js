@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express"
 import indexRouter from "./routes/indexRoute.js";
+import folderRouter from "./routes/folderRoute.js"
 import path from "path";
 import { fileURLToPath } from "url";
 import expressSession from "express-session";
@@ -49,7 +50,12 @@ app.use(async (req, res, next) => {
     next();
 })
 
-app.use('/', indexRouter)
+app.use('/', indexRouter);
+app.use('/folder', folderRouter);
+
+app.use((err, req, res, next) => {
+    res.send(err.message)
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
