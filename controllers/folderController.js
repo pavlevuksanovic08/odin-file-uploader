@@ -19,5 +19,22 @@ export const postCreateFolder = async (req, res, next) => {
     } catch (err) {
         next(err)
     }
+}
 
+export const getFolderById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+
+        const folder = await prisma.folder.findUnique({ 
+            where: {
+                id: id
+            }
+        })
+        if (!folder) throw new Error("There is no such a folder");
+        res.render('folder', {folder});
+    } catch (err) {
+        next(err);
+    }
+
+    
 }
