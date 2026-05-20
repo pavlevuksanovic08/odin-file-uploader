@@ -36,4 +36,15 @@ model Folder {
   lastUpdate DateTime @updatedAt
   userId     String
   user       User     @relation(fields: [userId], references: [id])
+  files      File[]
+}
+
+model File {
+  id           String   @id @default(uuid())
+  originalName String
+  size         Int
+  path         String
+  createdAt    DateTime @default(now())
+  folderId     String
+  folder       Folder   @relation(fields: [folderId], references: [id])
 }
