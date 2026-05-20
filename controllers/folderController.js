@@ -46,7 +46,14 @@ export const getFolderById = async (req, res, next) => {
                 id: id
             }
         })
-        res.render('folder', {folder});
+
+        const files = await prisma.file.findMany({
+            where: {
+                folderId: folder.id
+            }
+        })
+        
+        res.render('folder', {folder, files});
     } catch (err) {
         next(err);
     }
