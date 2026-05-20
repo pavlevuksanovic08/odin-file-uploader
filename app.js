@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express"
 import indexRouter from "./routes/indexRoute.js";
 import folderRouter from "./routes/folderRoute.js"
+import fileRouter from "./routes/fileRouter.js"
 import path from "path";
 import { fileURLToPath } from "url";
 import expressSession from "express-session";
@@ -52,6 +53,7 @@ app.use(async (req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/folder', folderRouter);
+app.use('/file', fileRouter)
 
 app.use((err, req, res, next) => {
     res.send(err.message)
