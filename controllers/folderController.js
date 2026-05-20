@@ -102,3 +102,19 @@ export const postFolderEdit = [
         }
     }
 ]
+
+export const postFolderDelete = async (req, res, next) => {
+    try  {
+        const id = req.params.id;
+
+        const folder = await prisma.folder.delete({
+            where: {
+                id: id
+            }
+        })
+
+        res.redirect('/')
+    } catch (err) {
+        next(err)
+    }
+}

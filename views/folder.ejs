@@ -8,5 +8,9 @@
 <body>
     <h1><%= locals.folder.name %></h1>
     <button onclick="window.location.href='/folder/<%=locals.folder.id %>/edit'">Edit folder</button>
+    <form method="post" action="/folder/<%= locals.folder.id %>/delete" 
+        onsubmit="return confirm('Are you sure you want to delete this folder permanently?')">
+        <button type="submit">Delete folder</button>
+    </form>
 </body>
 </html>
